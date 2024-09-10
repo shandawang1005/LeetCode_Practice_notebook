@@ -1,11 +1,9 @@
 // 152. Maximum Product Subarray
-// Given an integer array nums, find a 
+// Given an integer array nums, find a
 // subarray
 //  that has the largest product, and return the product.
 
 // The test cases are generated so that the answer will fit in a 32-bit integer.
-
- 
 
 // Example 1:
 
@@ -17,30 +15,45 @@
 // Input: nums = [-2,0,-1]
 // Output: 0
 // Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
- //这题跟58 非常像，只是因为负负得正需要交换位置，要小心
+//这题跟58 非常像，只是因为负负得正需要交换位置，要小心
+let maxP = function (nums) {
+  let max = nums[0];
+  let min = nums[0];
+  let result = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    let current = nums[i];
+    if (current < 0) {
+      [max, min] = [min, max];
+    }
+    max = Math.max(current, max * current);
+    min = Math.min(current, min * current);
+    result = Math.max(max, result);
+  }
+  return result;
+};
 
- var maxProduct = function(nums) {
-    let max_prod = nums[0];  // 初始化最大乘积为第一个元素
-    let min_prod = nums[0];  // 初始化最小乘积为第一个元素
-    let result = nums[0];    // 初始化全局最大乘积
+var maxProduct = function (nums) {
+  let max_prod = nums[0]; // 初始化最大乘积为第一个元素
+  let min_prod = nums[0]; // 初始化最小乘积为第一个元素
+  let result = nums[0]; // 初始化全局最大乘积
 
-    for (let i = 1; i < nums.length; i++) {
-        let curr = nums[i];
+  for (let i = 1; i < nums.length; i++) {
+    let curr = nums[i];
 
-        // 如果当前元素是负数，交换最大最小值
-        if (curr < 0) {
-            [max_prod, min_prod] = [min_prod, max_prod];
-        }
-
-        // 更新最大乘积和最小乘积
-        max_prod = Math.max(curr, max_prod * curr);
-        min_prod = Math.min(curr, min_prod * curr);
-
-        // 更新全局最大乘积
-        result = Math.max(result, max_prod);
+    // 如果当前元素是负数，交换最大最小值
+    if (curr < 0) {
+      [max_prod, min_prod] = [min_prod, max_prod];
     }
 
-    return result;
+    // 更新最大乘积和最小乘积
+    max_prod = Math.max(curr, max_prod * curr);
+    min_prod = Math.min(curr, min_prod * curr);
+
+    // 更新全局最大乘积
+    result = Math.max(result, max_prod);
+  }
+
+  return result;
 };
 
 //大概的意思是如果是负数，相当于正数会变成负数，最大直接变成最小，然后与result再比。 result和其他东西完全分开，不具有可比性

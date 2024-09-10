@@ -32,3 +32,20 @@
 // Explanation:
 
 // The input binary string 1111111111111111111111111111101 has a total of thirty set bits.
+var hammingWeight = function (n) {
+  let count = 0;
+  while (n > 0) {
+    count += n % 2; // 通过取模 2 判断当前位是否为 1
+    n = Math.floor(n / 2); // 用整数除以 2 来去掉最低位
+  }
+  return count;
+};
+
+//更简单的写法
+var hammingWeight2 = function (n) {
+  return n
+    .toString(2)
+    .split("")
+    .filter((x) => (x = 1)).length;
+};
+console.log(hammingWeight2(15))
