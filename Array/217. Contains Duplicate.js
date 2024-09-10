@@ -39,7 +39,12 @@ var containsDuplicate = function (nums) {
   return false;
 };
 //也可以用两个loop，上面的方法是先把他sort完直接比i-1
-
+var containsDuplicate = function (nums) {
+  let numSet = new Set(nums)
+  if (numSet.size !== nums.length) {
+      return true
+  } return false
+};
 
 //Python:
 // def containsDuplicate(self, nums: List[int]) -> bool:

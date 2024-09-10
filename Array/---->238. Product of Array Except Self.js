@@ -15,30 +15,49 @@
 // Input: nums = [-1,1,0,-3,3]
 // Output: [0,0,9,0,0]
 
-const productExceptSelf = function(nums) {
-    const n = nums.length;
-    const prefix = new Array(n).fill(1);  // 初始化前缀数组，默认值为1
-    const suffix = new Array(n).fill(1);  // 初始化后缀数组，默认值为1
-    const result = new Array(n);          // 最终结果数组
+const productExceptSelf = function (nums) {
+  const n = nums.length;
+  const prefix = new Array(n).fill(1); // 初始化前缀数组，默认值为1
+  const suffix = new Array(n).fill(1); // 初始化后缀数组，默认值为1
+  const result = new Array(n); // 最终结果数组
 
-    // 计算前缀积
-    for (let i = 1; i < n; i++) {
-        prefix[i] = prefix[i - 1] * nums[i - 1]; // 当前元素等于前一个前缀乘以前一个数
-    }
+  // 计算前缀积
+  for (let i = 1; i < n; i++) {
+    prefix[i] = prefix[i - 1] * nums[i - 1]; // 当前元素等于前一个前缀乘以前一个数
+  }
 
-    // 计算后缀积
-    for (let i = n - 2; i >= 0; i--) {
-        suffix[i] = suffix[i + 1] * nums[i + 1]; // 当前元素等于后一个后缀乘以后一个数
-    }
+  // 计算后缀积
+  for (let i = n - 2; i >= 0; i--) {
+    suffix[i] = suffix[i + 1] * nums[i + 1]; // 当前元素等于后一个后缀乘以后一个数
+  }
 
-    // 计算结果
-    for (let i = 0; i < n; i++) {
-        result[i] = prefix[i] * suffix[i]; // result的每一项等于前缀和后缀的乘积
-    }
+  // 计算结果
+  for (let i = 0; i < n; i++) {
+    result[i] = prefix[i] * suffix[i]; // result的每一项等于前缀和后缀的乘积
+  }
 
-    return result;
-}
+  return result;
+};
 
+var productExceptSelf2 = function (nums) {
+  const n = nums.length;
+  const result = new Array(n);
+
+  // 计算前缀积
+  result[0] = 1; // 第一个位置前没有元素
+  for (let i = 1; i < n; i++) {
+    result[i] = result[i - 1] * nums[i - 1];
+  }
+
+  // 计算后缀积并更新结果
+  let suffixProduct = 1; // 最后一个位置后没有元素
+  for (let i = n - 1; i >= 0; i--) {
+    result[i] = result[i] * suffixProduct;
+    suffixProduct *= nums[i]; // 更新后缀积
+  }
+
+  return result;
+};
 
 // 示例使用
 const nums = [1, 2, 3, 4];
