@@ -34,22 +34,33 @@ var twoSum = function (nums, target) {
   return result; // If no valid pair is found
 };
 
-console.log(twoSum(nums, target));
+// console.log(twoSum(nums1, target1));
 
 var twoSum = function (nums, target) {
   //nums is an array
-  //target is a number 
+  //target is a number
   //target = nums[x] +nums[y]   return [x,y ]
   let map = new Map();
+  // console.log("🚀 ~ twoSum ~ map:", map)
+
   for (let i = 0; i < nums.length; i++) {
-      if (map.has(target - nums[i])) {
-          return [map.get(target - nums[i]), i]
-      }
-      map.set(nums[i], i)
+    if (map.has(target - nums[i])) {
+      // console.log("🚀 ~ twoSum ~ map:", map)
+      return [map.get(target - nums[i]), i]
+    }
+    map.set(nums[i], i)
   }
+
   return []
 
 };
+
+// const nums1 = [2, 7, 11, 15]
+// const target1 = 9
+// console.log(twoSum(nums1, target1))
+// Output: [0,1]
+// Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
 
 
 // 重点在于loop的时候要用target减去loop进去的东西，能快一些，当然直接加也可以

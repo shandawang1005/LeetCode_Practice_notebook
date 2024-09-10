@@ -55,3 +55,17 @@ var containsDuplicate = function (nums) {
 //         return True
 
 // return False
+
+
+var containsDuplicate = function (nums) {
+  let counter = {}
+  for (let i = 0; i < nums.length; i += 1) {
+      if (counter[nums[i]]) {
+          return true
+      }
+      else {
+          counter[nums[i]] = 1
+      }
+  }
+  return false;
+};
