@@ -39,7 +39,7 @@ const productExceptSelf = function (nums) {
   return result;
 };
 
-var productExceptSelf2 = function (nums) {
+const productExceptSelf2 = function (nums) {
   const n = nums.length;
   const result = new Array(n);
 
@@ -58,6 +58,25 @@ var productExceptSelf2 = function (nums) {
 
   return result;
 };
+//=======================================================看这个=====================================================
+//前缀积 [1,1,2,6]    1*1， 1*1，1*2，1*2*3
+//后缀积[24,12,4,1]  4*3*2, 4*3,  4,    1
+//相乘[24,12,8,6]
+const productExceptSelf3 = function (nums) {
+  let result = [];
+  let start = 1; //这个表达的是从左往右时 最左边的左边没有东西，所以default成1；但是start会被更新
+  for (let i = 0; i < nums.length; i++) {
+    result.push(start);
+    start = start * nums[i]; //把start更新成左边所有的数字的乘（每次更新nums[i]乘start本身）
+  }
+  let start2 = 1; //这个是从右到左
+  for (let i = nums.length - 1; i >= 0; i--) {
+    result[i] = result[i] * start2;
+    start2 = start2 * nums[i];
+  }
+  return result;
+};
+//=======================================================看这个=====================================================
 
 // 示例使用
 const nums = [1, 2, 3, 4];
