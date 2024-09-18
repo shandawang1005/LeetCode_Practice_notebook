@@ -29,7 +29,7 @@ var maxSubArray = function(nums) {
       max_sum = Math.max(curr_sum, max_sum);
     }
   
-    return max_sum;  // 返回最大子数组的和
+    return max_sum;  // 返回最大子数组的和?
   }
 
   //这题的思路在于在28行测试当前数字加上nums[i]后会不会变大（或者说对于max有没有帮助），如果变大，那么继续加，否则抛弃
