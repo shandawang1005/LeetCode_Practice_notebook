@@ -20,7 +20,7 @@ add(value)：添加元素到集合中，如果元素已存在则不会重复添�
 delete(value)：从集合中删除指定元素，返回 true 表示成功删除，false 表示元素不存在。 （直接delete value）
 clear()：清空集合，删除所有元素
 读取的方法：
-has(value)：检查集合中是否存在某个值，返回布尔值。
+has(value)：检查集合中是否存在某个值，返回布尔值。    （set中是看value存不存在，没有key的概念）
 size：返回集合中元素的个数。
 values()：返回一个包含集合所有元素的迭代器。（一个object）
 
@@ -42,8 +42,8 @@ set(key, value)：将指定的键值对添加到 Map 中，如果键已存在则
 delete(key)：从 Map 中删除指定键的键值对，返回 true 表示成功删除，false 表示键不存在。 （delete key会连value一起delete，往中间填key）
 clear()：清空 Map 中的所有键值对。
 读取的方法：
-get(key)：返回指定键对应的值，如果键不存在则返回 undefined。
-has(key)：检查 Map 中是否存在指定键，返回布尔值。 （boolean true/false）
+get(key)：返回指定键对应的值，如果键不存在则返回 undefined。(通过key取得value)
+has(key)：检查 Map 中是否存在指定键，返回布尔值。 （boolean true/false）     （map中的has是看key存不存在）
 size：返回 Map 中键值对的数量。
 keys()：返回 Map 中所有键的迭代器。（一个object）
 values()：返回 Map 中所有值的迭代器。（一个object）
