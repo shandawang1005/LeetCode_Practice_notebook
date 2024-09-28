@@ -48,6 +48,8 @@ size：返回 Map 中键值对的数量。
 keys()：返回 Map 中所有键的迭代器。（一个object）
 values()：返回 Map 中所有值的迭代器。（一个object）
 forEach(callback)：对 Map 中的每个键值对执行回调函数。
+
+**可以用Array.from(myMap) 把map变成array
 ```
 
 Object:
@@ -66,6 +68,112 @@ Object.entries(obj)：返回对象的键值对数组。
 Object.hasOwnProperty(key)：检查对象是否拥有某个属性。
 ```
 
+## Sorting
+
+```
+1. Bubble Sort(通过交换两两数字进行sort)
+O(n^2)
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        # Flag to check if any swaps happen in this iteration
+        swapped = False
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                # Swap if the current element is greater than the next
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        # If no swaps happened, the list is already sorted
+        if not swapped:
+            break
+    return arr
+```
+```
+2. Merge Sort（通过在中线处分开，细分至最小单位后逐步merge回去）
+O(n*log(n))
+
+function mergeSort(arr) {
+    // 基本情况：如果数组长度小于等于1，返回该数组
+    if (arr.length <= 1) {
+        return arr;
+    }
+
+    // 将数组分成两半
+    const mid = Math.floor(arr.length / 2);
+    const left = arr.slice(0, mid);
+    const right = arr.slice(mid);
+
+    // 递归调用 mergeSort 对两半分别进行排序，并合并结果
+    return merge(mergeSort(left), mergeSort(right));
+}
+
+function merge(left, right) {
+    let sortedArr = [];
+    let i = 0, j = 0;
+
+    // 合并两个有序数组
+    while (i < left.length && j < right.length) {
+        if (left[i] < right[j]) {
+            sortedArr.push(left[i]);
+            i++;
+        } else {
+            sortedArr.push(right[j]);
+            j++;
+        }
+    }
+
+    // 处理剩余的元素
+    while (i < left.length) {
+        sortedArr.push(left[i]);
+        i++;
+    }
+
+    while (j < right.length) {
+        sortedArr.push(right[j]);
+        j++;
+    }
+
+    return sortedArr;
+}
+```
+```
+3. QuickSort (用Pivot（指标）把数字分成大于Pivot或小于Pivot0)
+
+O(n^2) Worst
+O(n*log(n)) Amortized
+主要是看pivot的选择，如果选到最大或者最小的东西，那么就gg直接n^2
+
+没有temp arr， 没有extra space needed
+
+
+function quickSort(arr) {
+    // 基本情况：数组长度为1或0时，直接返回数组
+    if (arr.length <= 1) {
+        return arr;
+    }
+
+    // 选择基准元素，这里选择数组的最后一个元素作为基准
+    const pivot = arr[arr.length - 1];
+    const left = [];
+    const right = [];
+
+    // 将元素与基准进行比较，分别放入left和right数组
+    for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i] < pivot) {
+            left.push(arr[i]);
+        } else {
+            right.push(arr[i]);
+        }
+    }
+
+    // 递归排序左右部分，并合并结果
+    return [...quickSort(left), pivot, ...quickSort(right)];
+}
+
+最后一步最关键
+```
+
+
 ## Linked Lists
 
 ## Recursion
@@ -73,6 +181,12 @@ Object.hasOwnProperty(key)：检查对象是否拥有某个属性。
 ## Sorting Algorithms
 
 ## Binary Search
+
+### Mostly need a sorted array
+```
+O(log(n)) most of time 
+
+```
 
 ## Trees
 
