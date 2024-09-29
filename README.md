@@ -6,7 +6,10 @@ Any helper that could help adding new stuff in will be greatfully thanksed
 # Note for review :
 
 ## Array
-
+Read/Write : O(1)
+ Insert/Remove: O(1)
+ Insert Middle or Beginning: O(n)
+ Remove Middle or Beginning: O(n)
 ## Hashing
 
 ### 3 种，Map /Set / Raw Object store
@@ -175,17 +178,103 @@ function quickSort(arr) {
 
 
 ## Linked Lists
+### Single Linked List 
+```
+Read/Write : O(n)
+ Insert/Remove: O(1)
+ Insert Middle or Beginning: O(1)
+ Remove Middle or Beginning: O(1)
 
+
+Iterative
+def travese(head)：
+    current = head
+    while(current):
+        current = current.next
+    return None
+
+Recursive
+def traverse(head):
+    if not head:
+        return None
+
+    return traverse(head.next)
+
+```
+
+
+
+### Doubly Linked List
 ## Recursion
+###Comparing Recursive and Iterative
+```
+
+#Single Path
+###Iteratiion
+function iterative(head){
+    let current = head
+    while(current){
+        current = current.next
+    }
+    return 0
+}
+
+
+function recurive(head){
+    if(!head)return 0;
+    return recurvie(head.next)
+}
+
+
+```
+
+
+```
+function reverseList(head) {
+    let prev = null;
+    let curr = head;
+    
+    while (curr !== null) {
+        let nextNode = curr.next;  // 保存下一个节点
+        curr.next = prev;          // 反转当前节点的指针
+        prev = curr;               // 更新 prev 为当前节点
+        curr = nextNode;           // 移动到下一个节点
+    }
+    
+    return prev;  // 返回反转后的链表头节点
+}
+
+###Recursion
+function reverseListRecursive(head) {
+    // 基本情况：如果链表为空或只有一个节点，直接返回
+    if (!head || !head.next) return head;
+    
+    // 递归反转剩余链表
+    let newHead = reverseListRecursive(head.next);
+    
+    // 把当前节点放到链表的后面
+    head.next.next = head;
+    head.next = null;
+    
+    return newHead;  // 返回新的头节点
+}
+
+```
+
+
+```
+Multi Path (Fibanacci)
+```
 
 ## Sorting Algorithms
 
 ## Binary Search
-
 ### Mostly need a sorted array
 ```
 O(log(n)) most of time 
-
+例子可以是三个pointer ， 一个left 一个mid 一个right 然后直接跟target比，
+然后直接reassign left = mid+1 或者right = mid
+前提是必须是sorted， 这个方法叫二分法
 ```
 
 ## Trees
