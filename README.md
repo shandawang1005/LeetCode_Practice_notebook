@@ -287,7 +287,7 @@ O(log(n)) most of time
 
 ### Depth First Search
 
-Using Stack (LIFO)  pop   recursion  (because it has callstack)
+Using Stack (LIFO) pop recursion (because it has callstack)
 O(n)
 
 ```
@@ -349,8 +349,38 @@ function DFS(root){
 
 ### Breath First Search
 
-Using Queue (FIFO)  shift   No recursion, just do iteratively
+Using Queue (FIFO) shift No recursion, just do iteratively
 O(n)
+
+We need to create a Queue every time
+
+```
+function levelOrder(root){
+    let queue = []
+    queue.push(root)
+    let output= []
+
+    while(queue.length>0){
+        let queuelen = queue.length;
+        let level = [];
+
+        for (let i =0;i <queuelen;i++){
+            let node = queue.shift();
+            if (node){
+                level.push(node.val);
+                queue.push(node.left);
+                queue.push(node.right)
+            }
+        }
+        if(level){
+            output.push(level)
+        }
+    }
+    return output
+}
+
+```
+
 ```
 
 
@@ -361,10 +391,6 @@ O(n)
 
 ```
 
-```
-
-
-```
 ## Graphs
 
 ## Heaps
