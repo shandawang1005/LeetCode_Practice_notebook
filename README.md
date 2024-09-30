@@ -393,7 +393,45 @@ function levelOrder(root){
 
 ## Graphs
 
-## Heaps
+## Heaps \*\*not FIFO, based on Priority Queue(min or max)
+
+O(n)
+显示成 Array 的时候直接一层层显示，等于是BFS出来的结果 先从root开始，然后第一层，然后第二层
+
+### Min Heap
+
+Complete Binary Tree : binary tree from top to bottom, left to right, to the last node
+必须所有数据靠左，左边填满才会到右边，除了最后一行以外全部都填满才可以
+
+Order Property：
+每一个 node 都比他们的 parent 大就可以，顺序无所谓
+
+```
+
+LeftChild = 2 * i +1
+RightChild = 2 * i +2
+Parent= Math.floor( (i-1)/2 )
+
+**原因是因为填满
+```
+
+### Max Heap
+
+Complete Binary Tree : binary tree from top to bottom, left to right, to the last node
+必须所有数据靠左，左边填满才会到右边，除了最后一行以外全部都填满才可以
+
+Order Property：
+每一个 node 都比他们的 parent 小就可以，顺序无所谓
+
+```
+poll : 
+pop out top element，pop之后需要reconstruct
+1. move last element to top
+2. heapify down: recursively compare children, swap with bigger child
+
+主要是为了把最大的放在最上面，把他一层一层往下放，用left 和right 和它本身比 
+
+```
 
 ## Tries
 
