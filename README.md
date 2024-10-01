@@ -424,12 +424,33 @@ Order Property：
 每一个 node 都比他们的 parent 小就可以，顺序无所谓
 
 ```
+O(log(n))
 poll : 
 pop out top element，pop之后需要reconstruct
 1. move last element to top
 2. heapify down: recursively compare children, swap with bigger child
 
 主要是为了把最大的放在最上面，把他一层一层往下放，用left 和right 和它本身比 
+
+
+O(log(n))
+push :
+insert element at the end of the tree
+1. heapify up : recursively it with parent, swap if parent is larger
+
+
+
+O(n)
+heapify :
+convert a set of value to a heap.
+Push each value one by one into heap
+
+
+O(1)
+Peek: look for max/min
+
+O(n)
+Sraching: search for heap node 
 
 ```
 
