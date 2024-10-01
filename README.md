@@ -461,3 +461,20 @@ Sraching: search for heap node
 ```
 
 ```
+
+
+## BackTracking
+```
+def backtrack(curr, Other Args):
+    if(base_case):
+        return XXX
+    
+    for i in len(XX):
+        modify curr,
+        backtrack(curr, Other Args);
+        undo the modification of curr
+
+
+
+
+```
