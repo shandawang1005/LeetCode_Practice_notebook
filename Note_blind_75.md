@@ -24,3 +24,15 @@ list = [0]\*5 ==> print(list)===> [0,0,0,0,0]
 max(list)/min(list)
 ```
 
+python 中split() 里面不放东西的话就是默认为空格
+如果用 c = list[s],则是把每个字母拆开，没办法按需要的东西分割
+
+可以用   .strip()  把前后空格抹掉
+
+
+```
+****额外的用法****
+s = "one two three four five"
+limited_split = s.split(" ", 2)  # 按空格拆分，限制拆分次数为 2
+print(limited_split)  # 输出: ['one', 'two', 'three four five']
+```
