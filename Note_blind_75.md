@@ -9,6 +9,7 @@ for i in range(len(n)-1,-1,-1)
 
 写法： range(start, stop, step)
 ```
+
 Greatest Common divider 用法：
 
 gcd(a,b) 其中 a 和 b 是 length 的长度
@@ -50,14 +51,14 @@ limited_split = s.split(" ", 2)  # 按空格拆分，限制拆分次数为 2
 print(limited_split)  # 输出: ['one', 'two', 'three four five']
 ```
 
+---
 
-*******************
 重点再看几遍 leetcode 443
-*******************
 
+---
 
+滑动窗口 （fix 版）
 
-滑动窗口 （fix版）
 ```Python
 一种例题
     def findMaxAverage(self, nums: List[int], k: int) -> float:
@@ -72,6 +73,7 @@ print(limited_split)  # 输出: ['one', 'two', 'three four five']
 然后更新就可以了
 变种看下面
 ```
+
 ```Python
 第二种例题，如果要求是在某个obj里面的东西可以用这个方法
     def maxVowels(self, s: str, k: int) -> int:
@@ -94,6 +96,7 @@ print(limited_split)  # 输出: ['one', 'two', 'three four five']
 
 
 ```
+
 ```Python
 如果不是固定窗口，而是随机选择，简单的做法：
 from itertools import combinations
@@ -109,12 +112,12 @@ from itertools import combinations
 
 def findMaxAverageRandom(nums, k):
     max_avg = float('-inf')
-    
+
     # 生成所有长度为 k 的组合
     for combo in combinations(nums, k):
         current_avg = sum(combo) / k
         max_avg = max(max_avg, current_avg)  # 更新最大平均值
-    
+
     return max_avg
 
 # 示例用法
@@ -124,7 +127,70 @@ print(findMaxAverageRandom(nums, k))  # 输出将依赖于随机组合
 
 ```
 
-
-
 有趣的一题：
+
+```javascript
 724. Find Pivot Index
+Given an array of integers nums, calculate the pivot index of this array.
+
+The pivot index is the index where the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the index's right.
+
+If the index is on the left edge of the array, then the left sum is 0 because there are no elements to the left. This also applies to the right edge of the array.
+
+Return the leftmost pivot index. If no such index exists, return -1.
+```
+
+思路： 可以用累计加法（prefix）或者双指针
+双指针：
+左一个右一个，然后计算左边的累计，右边的累计，
+如果左边累计等于右边累计，同时左 i+1 =右 i，则 return 左 i+1
+
+    ```Python
+
+def pivotIndex(nums: List[int]) -> int:
+left, right = 0, len(nums) - 1 # 初始化左右指针
+left_sum, right_sum = nums[left], nums[right] # 左右和的初始值
+
+    while left + 1 < right:
+        if left_sum < right_sum:
+            left += 1
+            left_sum += nums[left]
+        else:
+            right -= 1
+            right_sum += nums[right]
+
+    # 检查是否能找到满足条件的枢轴
+    if left_sum == right_sum and left + 1 == right:
+        return left + 1  # 返回枢轴索引
+
+    return -1  # 没有找到
+    ```
+
+    Prefix的方法（有点类似于2Sum）
+    计算一个总共的sum，然后计算左边的sum， 右边的等于是total sum - 左sum - nums[i]
+    如果右边等于左边，那么直接return当前的i就完事儿了
+
+    ```Python
+
+    def pivotIndex(self, nums: List[int]) -> int:
+        sumT = sum(nums)
+        leftS = 0
+        for i in range(len(nums)):
+            #这一步重点
+
+        # 当我们在遍历到索引 i 时：
+
+        # 左侧和是从索引 0 到 i-1 的和。
+
+        # 当前元素是 nums[i]。
+
+        # 右侧和是从索引 i+1 到 n-1 的和。
+
+            if leftS==(sumT-leftS-nums[i]):
+                return i
+            leftS+=nums[i]
+
+
+        return -1
+
+    ```
