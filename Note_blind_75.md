@@ -1,4 +1,19 @@
 ```Python
+Counter 的用法：
+from collections import Counter
+
+array = ['a', 'b', 'b', 'c', 'd']
+
+
+count =Counter(array)
+
+print(count)==>Counter({'b': 2, 'a': 1, 'c': 1, 'd': 1})  这个是带括号的
+
+记住， count.values() 这个是拿频率用的
+       count.keys()这个是拿原本数字用的
+```
+
+```Python
 Python 的 for loop 正向
 
 for i in range(0,len(n),1)
@@ -129,7 +144,8 @@ print(findMaxAverageRandom(nums, k))  # 输出将依赖于随机组合
 
 有趣的一题：
 
-```javascript
+```
+
 724. Find Pivot Index
 Given an array of integers nums, calculate the pivot index of this array.
 
@@ -145,7 +161,7 @@ Return the leftmost pivot index. If no such index exists, return -1.
 左一个右一个，然后计算左边的累计，右边的累计，
 如果左边累计等于右边累计，同时左 i+1 =右 i，则 return 左 i+1
 
-    ```Python
+```Python
 
 def pivotIndex(nums: List[int]) -> int:
 left, right = 0, len(nums) - 1 # 初始化左右指针
@@ -164,13 +180,14 @@ left_sum, right_sum = nums[left], nums[right] # 左右和的初始值
         return left + 1  # 返回枢轴索引
 
     return -1  # 没有找到
-    ```
 
+```
     Prefix的方法（有点类似于2Sum）
     计算一个总共的sum，然后计算左边的sum， 右边的等于是total sum - 左sum - nums[i]
     如果右边等于左边，那么直接return当前的i就完事儿了
 
-    ```Python
+ 
+```Python
 
     def pivotIndex(self, nums: List[int]) -> int:
         sumT = sum(nums)
@@ -193,4 +210,58 @@ left_sum, right_sum = nums[left], nums[right] # 左右和的初始值
 
         return -1
 
-    ```
+```
+
+
+
+Zip 的用法:   **看一看leetcode 2352 Equal Row and Column Pairs ，概念在于一定要计算count的数量，因为可以重复
+
+```Python
+# 两个列表
+list1 = [1, 2, 3]
+list2 = ['a', 'b', 'c']
+
+# 使用 zip 打包
+result = zip(list1, list2)
+
+# 将结果转换为列表以查看
+print(list(result))  # 输出: [(1, 'a'), (2, 'b'), (3, 'c')]
+
+
+list1 = [1, 2, 3]
+list2 = ['a', 'b']
+
+result = zip(list1, list2)
+print(list(result))  # 输出: [(1, 'a'), (2, 'b')]
+
+```
+常见用法：
+```Python
+创建字典：你可以使用 zip() 结合 dict() 来创建字典：
+
+
+keys = ['name', 'age', 'job']
+values = ['Alice', 30, 'Engineer']
+result_dict = dict(zip(keys, values))
+print(result_dict)  # 输出: {'name': 'Alice', 'age': 30, 'job': 'Engineer'}
+转置矩阵：如果你有一个二维列表（矩阵），可以使用 zip() 来转置它：
+
+
+###重点看这个 ### MATRIX可以用到
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+transposed = list(zip(*matrix))
+print(transposed)  # 输出: [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
+并行循环：在需要同时遍历多个序列时，zip() 是个很方便的工具：
+
+
+names = ['Alice', 'Bob', 'Charlie']
+ages = [30, 25, 35]
+
+for name, age in zip(names, ages):
+    print(f"{name} is {age} years old.")
+# 输出:
+# Alice is 30 years old.
+# Bob is 25 years old.
+# Charlie is 35 years old.
+```
+
