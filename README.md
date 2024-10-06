@@ -478,3 +478,5 @@ def backtrack(curr, Other Args):
 
 
 ```
+
+BFS need to relearn, DFS as well (in graph)
