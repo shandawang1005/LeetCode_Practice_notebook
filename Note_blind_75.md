@@ -45,7 +45,7 @@ def gcdOfStrings(self, str1: str, str2: str) -> str:
 Python 中预生成 Array 的方法:
 
 ```Python
-list = [0]\*5 ==> print(list)===> [0,0,0,0,0]
+list = [0]*5 ==> print(list)===> [0,0,0,0,0]
 ```
 
 取 max/min 在 list 中的方法：
