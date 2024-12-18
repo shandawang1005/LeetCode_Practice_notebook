@@ -88,4 +88,4 @@ var twoSum = function (nums, target) {
 
 //     return None  # 如果没有找到符合条件的数字，返回 None
 
-//enumerate 相当于 index of nums 可以直接用i来对应每个nums里面的数字所对应的index
+//enumerate 相当于 index of nums 可以直接用i来对应每个nums里面的数字所对应的index//
